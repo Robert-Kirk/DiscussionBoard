@@ -1,20 +1,18 @@
 package com.collabera.board.controllers;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-@Controller
+@RestController
 public class DiscussionChannelController {
 	
 	//1. List some channels
 	@GetMapping("/")
 	public String listAllChannels() {
-		
 		return null;
-		
 	}
 	
 	
@@ -24,7 +22,9 @@ public class DiscussionChannelController {
 		return name;
 		
 	}
+	
 	//1.2. Navigate to specific channel
+	
 	@GetMapping("/{name}/home")
 	public String redirectToSpecificChannel(@PathVariable String name) {
 		return name;
