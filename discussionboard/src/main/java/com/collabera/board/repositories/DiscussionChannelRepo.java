@@ -1,18 +1,18 @@
-package com.collabera.board.services;
+package com.collabera.board.repositories;
 
 import java.util.List;
 
 import com.collabera.board.models.DiscussionChannel;
 import com.collabera.board.services.interfaces.BasicCrudServices;
 
-public class DiscussionChannelServices implements BasicCrudServices<DiscussionChannel>{
+public class DiscussionChannelRepo implements BasicCrudServices<DiscussionChannel> {
 
 	@Override
 	public List<DiscussionChannel> getList() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public List<DiscussionChannel> getList(String title) {
 		// TODO Auto-generated method stub
@@ -20,7 +20,7 @@ public class DiscussionChannelServices implements BasicCrudServices<DiscussionCh
 	}
 
 	@Override
-	public DiscussionChannel addItem(DiscussionChannel channel) {
+	public DiscussionChannel addItem(DiscussionChannel t) {
 		// TODO Auto-generated method stub
 		return null;
 	}

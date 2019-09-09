@@ -6,6 +6,7 @@ import com.collabera.board.models.interfaces.SiteContent;
 
 public class UpdateLog {
 	
+	private int id;
 	private String nameOfUserThatUpdated;
 	private Date dateOfTheUpdate;
 	
@@ -39,6 +40,14 @@ public class UpdateLog {
 
 	public void setContentOfTheUpdate(SiteContent contentOfTheUpdate) {
 		this.contentOfTheUpdate = contentOfTheUpdate;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	
