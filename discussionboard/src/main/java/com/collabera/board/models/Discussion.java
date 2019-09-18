@@ -6,6 +6,8 @@ import com.collabera.board.models.interfaces.String;
 
 public class Discussion {
 	
+	
+	private Long id;
 	private String discussionTitle;
 	private String author;
 	private String articleContent;
@@ -37,6 +39,14 @@ public class Discussion {
 
 	public void setArticleContent(String articleContent) {
 		this.articleContent = articleContent;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
