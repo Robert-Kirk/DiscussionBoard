@@ -1,11 +1,11 @@
 package com.collabera.board.models;
 
-import java.sql.Date;
 import java.util.List;
+
 
 public class UpdateTracker {
 	
-	private Date dateLastUpdated;
+	private String dateLastUpdated;
 	private String lastUserToUpdate;
 	private List<UpdateLog> updateLogs;
 	
@@ -14,12 +14,12 @@ public class UpdateTracker {
 	}
 
 
-	public Date getDateLastUpdated() {
+	public String getDateLastUpdated() {
 		return dateLastUpdated;
 	}
 
 
-	public void setDateLastUpdated(Date dateLastUpdated) {
+	public void setDateLastUpdated(String dateLastUpdated) {
 		this.dateLastUpdated = dateLastUpdated;
 	}
 

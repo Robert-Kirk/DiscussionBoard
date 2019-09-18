@@ -16,28 +16,29 @@ public class DiscussionServices implements BasicCrudServices<Discussion> {
 	@Override
 	public List<Discussion> getList() {
 		// TODO Auto-generated method stub
-		return this.repo.getList();
+		return this.repo.findAll();
 	}
 
 	@Override
 	public List<Discussion> getList(String title) {
-		
-		return this.repo.getList(title);
+		return this.repo.findAllByTitle(title);
 	}
 
 	@Override
 	public Discussion addItem(Discussion disc) {
-		return this.repo.addItem(disc);
+		return this.repo.insert(disc);
 	}
 
 	@Override
-	public Discussion deleteItem(int id) {
-		return this.repo.deleteItem(id);
+	public Discussion deleteItem(Long id) {
+		Discussion d = this.repo.findById(id).get();
+		this.repo.deleteById(id);
+		return d;
 	}
 
 	@Override
-	public Discussion updateItem(int id) {
-		return this.repo.updateItem(id);
+	public Discussion updateItem(Long id, Discussion entity) {
+		return this.repo.save(entity);
 	}
 
 

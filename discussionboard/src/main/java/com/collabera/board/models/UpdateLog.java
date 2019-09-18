@@ -1,18 +1,16 @@
 package com.collabera.board.models;
 
-import java.sql.Date;
-
-import com.collabera.board.models.interfaces.String;
+import com.collabera.board.models.interfaces.Content;
 
 public class UpdateLog {
 	//Primary Key id
 	private int id;
 	//sudo Foreign key Title
 	private String uniqueStringId;
-	private Date dateOfTheUpdate;
+	private String dateOfTheUpdate;
 	
 	//TODO Consider class: Content for this to read changes
-	private String contentOfTheUpdate;
+	private Content contentOfTheUpdate;
 
 	
 	
@@ -27,19 +25,19 @@ public class UpdateLog {
 		this.uniqueStringId = nameOfUserThatUpdated;
 	}
 
-	public Date getDateOfTheUpdate() {
+	public String getDateOfTheUpdate() {
 		return dateOfTheUpdate;
 	}
 
-	public void setDateOfTheUpdate(Date dateOfTheUpdate) {
+	public void setDateOfTheUpdate(String dateOfTheUpdate) {
 		this.dateOfTheUpdate = dateOfTheUpdate;
 	}
 
-	public String getContentOfTheUpdate() {
+	public Content getContentOfTheUpdate() {
 		return contentOfTheUpdate;
 	}
 
-	public void setContentOfTheUpdate(String contentOfTheUpdate) {
+	public void setContentOfTheUpdate(Content contentOfTheUpdate) {
 		this.contentOfTheUpdate = contentOfTheUpdate;
 	}
 

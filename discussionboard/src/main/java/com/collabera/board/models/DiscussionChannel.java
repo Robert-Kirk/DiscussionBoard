@@ -3,8 +3,17 @@ package com.collabera.board.models;
 import java.sql.Date;
 import java.util.List;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class DiscussionChannel {
 	
+	@Id
+	private String id;
+	
+	@Indexed
 	private String channelName;
 	
 	private List<Discussion> discussionsInChannel;

@@ -1,7 +1,7 @@
 package com.collabera.board.models;
 
-import com.collabera.board.models.interfaces.String;
+import com.collabera.board.models.interfaces.Content;
 
-public class ArticleContent implements String {
+public class ArticleContent implements Content {
 
 }

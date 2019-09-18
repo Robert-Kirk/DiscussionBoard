@@ -2,21 +2,27 @@ package com.collabera.board.services;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.collabera.board.models.DiscussionChannel;
+import com.collabera.board.repositories.DiscussionChannelRepo;
 import com.collabera.board.services.interfaces.BasicCrudServices;
 
 public class DiscussionChannelServices implements BasicCrudServices<DiscussionChannel>{
 
+	@Autowired
+	DiscussionChannelRepo repo;
+	
 	@Override
 	public List<DiscussionChannel> getList() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return repo.findAll();
 	}
 	
 	@Override
 	public List<DiscussionChannel> getList(String title) {
 		// TODO Auto-generated method stub
-		return null;
+		return repo.findAllByTitle(title);
 	}
 
 	@Override
@@ -26,13 +32,13 @@ public class DiscussionChannelServices implements BasicCrudServices<DiscussionCh
 	}
 
 	@Override
-	public DiscussionChannel deleteItem(int id) {
+	public DiscussionChannel deleteItem(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public DiscussionChannel updateItem(int id) {
+	public DiscussionChannel updateItem(Long id, DiscussionChannel channel) {
 		// TODO Auto-generated method stub
 		return null;
 	}

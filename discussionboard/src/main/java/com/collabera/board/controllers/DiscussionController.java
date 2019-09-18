@@ -50,15 +50,16 @@ public class DiscussionController {
 
 	// 3. update Discussion
 	@PutMapping("/updateDiscussion/{id}")
-	public Discussion updateDiscussion(@PathVariable(value = "id") Integer id) {
-		return services.updateItem(id);
+	public Discussion updateDiscussion(@PathVariable(value = "id") Long id, 
+			@RequestBody Discussion discussion) {
+		return services.updateItem(id, discussion);
 
 	}
 
 	// 4. delete Discussion
 	// SoftDelete
 	@PutMapping("/deleteDiscussion/{id}")
-	public Discussion deleteDiscussion(@PathVariable(value = "id") int id) {
+	public Discussion deleteDiscussion(@PathVariable(value = "id") Long id) {
 		return services.deleteItem(id);
 
 	}

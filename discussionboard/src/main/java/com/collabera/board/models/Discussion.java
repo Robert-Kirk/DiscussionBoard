@@ -2,12 +2,16 @@ package com.collabera.board.models;
 
 import java.util.List;
 
-import com.collabera.board.models.interfaces.String;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
 public class Discussion {
 	
 	
-	private Long id;
+	@Id
+	private String id;
+	
+	@Indexed
 	private String discussionTitle;
 	private String author;
 	private String articleContent;
@@ -41,11 +45,11 @@ public class Discussion {
 		this.articleContent = articleContent;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	
