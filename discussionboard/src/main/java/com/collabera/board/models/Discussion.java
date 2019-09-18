@@ -2,13 +2,13 @@ package com.collabera.board.models;
 
 import java.util.List;
 
-import com.collabera.board.models.interfaces.SiteContent;
+import com.collabera.board.models.interfaces.String;
 
 public class Discussion {
 	
 	private String discussionTitle;
 	private String author;
-	private SiteContent articleContent;
+	private String articleContent;
 	
 	@SuppressWarnings("unused")
 	private List<CommentTrees> comments;
@@ -31,11 +31,11 @@ public class Discussion {
 		this.author = author;
 	}
 
-	public SiteContent getArticleContent() {
+	public String getArticleContent() {
 		return articleContent;
 	}
 
-	public void setArticleContent(SiteContent articleContent) {
+	public void setArticleContent(String articleContent) {
 		this.articleContent = articleContent;
 	}
 	

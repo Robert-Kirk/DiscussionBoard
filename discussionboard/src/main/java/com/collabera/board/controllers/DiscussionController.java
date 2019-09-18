@@ -42,15 +42,15 @@ public class DiscussionController {
 
 	// 2. add Discussion
 	@PostMapping("/addDiscussion")
-	public Discussion addDiscussion(@RequestBody Discussion Discussion) {
+	public Discussion addDiscussion(@RequestBody Discussion discussion) {
 
-		return services.addItem(Discussion);
+		return services.addItem(discussion);
 
 	}
 
 	// 3. update Discussion
 	@PutMapping("/updateDiscussion/{id}")
-	public Discussion updateDiscussion(@PathVariable(value = "id") int id) {
+	public Discussion updateDiscussion(@PathVariable(value = "id") Integer id) {
 		return services.updateItem(id);
 
 	}
