@@ -1,12 +1,10 @@
 package com.collabera.board.models;
 
-import com.collabera.board.models.interfaces.SiteContent;
-
 public class UserComment {
 	
 	
 	private String userThatMadePost;
-	private SiteContent commentContent;
+	private String commentContent;
 
 	public UserComment() {}
 
@@ -18,11 +16,11 @@ public class UserComment {
 		this.userThatMadePost = userThatMadePost;
 	}
 
-	public SiteContent getCommentContent() {
+	public String getCommentContent() {
 		return commentContent;
 	}
 
-	public void setCommentContent(SiteContent commentContent) {
+	public void setCommentContent(String commentContent) {
 		this.commentContent = commentContent;
 	}
 

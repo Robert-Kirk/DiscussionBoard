@@ -2,8 +2,6 @@ package com.collabera.board.models;
 
 import java.sql.Date;
 
-import com.collabera.board.models.interfaces.SiteContent;
-
 public class UpdateLog {
 	
 	private int id;
@@ -11,7 +9,7 @@ public class UpdateLog {
 	private Date dateOfTheUpdate;
 	
 	//TODO Consider class: Content for this to read changes
-	private SiteContent contentOfTheUpdate;
+	private String contentOfTheUpdate;
 
 	
 	
@@ -34,11 +32,11 @@ public class UpdateLog {
 		this.dateOfTheUpdate = dateOfTheUpdate;
 	}
 
-	public SiteContent getContentOfTheUpdate() {
+	public String getContentOfTheUpdate() {
 		return contentOfTheUpdate;
 	}
 
-	public void setContentOfTheUpdate(SiteContent contentOfTheUpdate) {
+	public void setContentOfTheUpdate(String contentOfTheUpdate) {
 		this.contentOfTheUpdate = contentOfTheUpdate;
 	}
 

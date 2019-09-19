@@ -7,17 +7,16 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.collabera.board.models.Discussion;
 import com.collabera.board.models.DiscussionChannel;
 
 public interface DiscussionChannelRepo extends JpaRepository<DiscussionChannel, Long> {
 
 
 	@Query(value = "select title from channel c")
-	List<Discussion> getAllChannels();
+	List<DiscussionChannel> getAllChannels();
 
 	@Query(value = "select title from channel c where c.title like :searchTitle")
-	List<Discussion> getChannelsByName(@Param("searchTitle") String title);
+	List<DiscussionChannel> getChannelsByName(@Param("searchTitle") String title);
 
 
 
@@ -31,14 +30,14 @@ public interface DiscussionChannelRepo extends JpaRepository<DiscussionChannel, 
 	@Query(value="INSERT INTO channel c "
 			+ "(title, content, author_username) "
 			+ "values (:title, :author)")
-	Discussion addChannel(@Param("title")String title, @Param("author")String author);
+	DiscussionChannel addChannel(@Param("title")String title, @Param("author")String author);
 
 	@Modifying
 	@Query(value = "UPDATE channel c SET where c.id = :id ")
-	Discussion updateChannel(@Param("id") Integer id);
+	DiscussionChannel updateChannel(@Param("id") Integer id);
 	
 	@Modifying
 	@Query(value="UPDATE channel c set c.viewable = false where c.id = ?1")
-	Discussion deleteChannel(Integer id);
+	DiscussionChannel deleteChannel(Integer id);
 
 }
