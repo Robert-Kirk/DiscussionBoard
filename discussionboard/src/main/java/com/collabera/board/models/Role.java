@@ -1,11 +1,9 @@
 package com.collabera.board.models;
 
 public class Role {
-	
+
 	private String roleName;
 	private String authroitiesGranted;
-	
-	private UpdateTracker updateTracker;
 
 	public Role() {
 	}
@@ -25,16 +23,5 @@ public class Role {
 	public void setAuthroitiesGranted(String authroitiesGranted) {
 		this.authroitiesGranted = authroitiesGranted;
 	}
-
-	public UpdateTracker getUpdateTracker() {
-		return updateTracker;
-	}
-
-	public void setUpdateTracker(UpdateTracker updateTracker) {
-		this.updateTracker = updateTracker;
-	}
-	
-	
-	
 
 }

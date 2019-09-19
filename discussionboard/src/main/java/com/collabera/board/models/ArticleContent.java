@@ -1,6 +1,7 @@
 package com.collabera.board.models;
 
-@Deprecated
-public class ArticleContent {
+import com.collabera.board.models.interfaces.Content;
+
+public class ArticleContent implements Content {
 
 }

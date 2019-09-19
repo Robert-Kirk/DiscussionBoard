@@ -1,8 +1,8 @@
 package com.collabera.board.models;
 
 public class UserComment {
-	
-	
+
+
 	private String userThatMadePost;
 	private String commentContent;
 

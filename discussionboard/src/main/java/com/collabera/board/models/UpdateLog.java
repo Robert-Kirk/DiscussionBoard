@@ -1,34 +1,38 @@
 package com.collabera.board.models;
 
-import java.sql.Date;
+import java.util.Date;
+
 
 public class UpdateLog {
-	
+	//Primary Key id
 	private int id;
-	private String nameOfUserThatUpdated;
-	private Date dateOfTheUpdate;
-	
+	//sudo Foreign key Title
+	private String uniqueStringId;
+	private String dateOfTheUpdate;
+
 	//TODO Consider class: Content for this to read changes
 	private String contentOfTheUpdate;
 
-	
-	
-	
-	public UpdateLog() {}
+
+
+
+	public UpdateLog() {
+		this.dateOfTheUpdate = new Date().toString();
+	}
 
 	public String getNameOfUserThatUpdated() {
-		return nameOfUserThatUpdated;
+		return uniqueStringId;
 	}
 
 	public void setNameOfUserThatUpdated(String nameOfUserThatUpdated) {
-		this.nameOfUserThatUpdated = nameOfUserThatUpdated;
+		this.uniqueStringId = nameOfUserThatUpdated;
 	}
 
-	public Date getDateOfTheUpdate() {
+	public String getDateOfTheUpdate() {
 		return dateOfTheUpdate;
 	}
 
-	public void setDateOfTheUpdate(Date dateOfTheUpdate) {
+	public void setDateOfTheUpdate(String dateOfTheUpdate) {
 		this.dateOfTheUpdate = dateOfTheUpdate;
 	}
 
@@ -48,6 +52,6 @@ public class UpdateLog {
 		this.id = id;
 	}
 
-	
-	
+
+
 }

@@ -19,13 +19,13 @@ public class DiscussionController {
 	@Autowired
 	DiscussionServices services;
 
-	// 1. List some 
+	// 1. List some
 	@GetMapping("/")
 	public List<Discussion> listAll() {
 		return services.getList();
 	}
 
-	// 1.1. Filter list of 
+	// 1.1. Filter list of
 	@GetMapping("/{title}")
 	public List<Discussion> listFilteredList(@PathVariable(value = "title") String title) {
 		return services.getList(title);
@@ -42,16 +42,17 @@ public class DiscussionController {
 
 	// 2. add Discussion
 	@PostMapping("/addDiscussion")
-	public Discussion addDiscussion(@RequestBody Discussion Discussion) {
+	public Discussion addDiscussion(@RequestBody Discussion discussion) {
 
-		return services.addItem(Discussion);
+		return services.addItem(discussion);
 
 	}
 
 	// 3. update Discussion
 	@PutMapping("/updateDiscussion/{id}")
-	public Discussion updateDiscussion(@RequestBody Discussion disc) {
-		return services.updateItem(disc);
+	public Discussion updateDiscussion(@PathVariable(value = "id") Long id,
+			@RequestBody Discussion discussion) {
+		return services.updateItem(id, discussion);
 
 	}
 

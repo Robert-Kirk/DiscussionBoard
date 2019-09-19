@@ -2,39 +2,23 @@ package com.collabera.board.models;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.validation.Valid;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 
-@Entity
-@Table(name="discussion")
+
 public class Discussion {
-	
+
+
 	@Id
-	@Column(unique = true)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(unique=true)
+	private String id;
+
+	@Indexed
 	private String discussionTitle;
-	
-	
+
+
 	private String author;
-	
-	@Column(name = "content")
 	private String articleContent;
-	
-	@Valid
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "comments")
+
 	private List<CommentTrees> comments;
 
 	public Discussion() {}
@@ -63,16 +47,24 @@ public class Discussion {
 		this.articleContent = articleContent;
 	}
 
-	public Long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
-	
-	
-	
-	
+
+	public List<CommentTrees> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<CommentTrees> comments) {
+		this.comments = comments;
+	}
+
+
+
+
 
 }

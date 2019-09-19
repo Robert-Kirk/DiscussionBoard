@@ -12,15 +12,17 @@ public class DiscussionChannelServices implements BasicCrudServices<DiscussionCh
 
 	@Autowired
 	DiscussionChannelRepo repo;
-	
+
 	@Override
 	public List<DiscussionChannel> getList() {
-		return repo.getAllChannels();
+
+		return repo.findAll();
 	}
-	
+
 	@Override
 	public List<DiscussionChannel> getList(String title) {
-		return repo.getChannelsByName(title);
+		// TODO Auto-generated method stub
+		return repo.findAllByTitle(title);
 	}
 
 	@Override
@@ -30,14 +32,14 @@ public class DiscussionChannelServices implements BasicCrudServices<DiscussionCh
 
 	@Override
 	public DiscussionChannel deleteItem(Long id) {
-		DiscussionChannel channel = repo.getOne(id);
-		repo.deleteById(id);
-		return channel;
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
-	public DiscussionChannel updateItem(DiscussionChannel channel) {
-		return repo.save(channel);
+	public DiscussionChannel updateItem(Long id, DiscussionChannel channel) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

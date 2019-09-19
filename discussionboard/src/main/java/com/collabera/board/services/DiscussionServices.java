@@ -11,35 +11,34 @@ import com.collabera.board.services.interfaces.BasicCrudServices;
 public class DiscussionServices implements BasicCrudServices<Discussion> {
 
 	@Autowired
-	DiscussionRepo repo;
-	
+	private DiscussionRepo repo;
+
 	@Override
 	public List<Discussion> getList() {
-		return repo.getAllDiscussions();
+		// TODO Auto-generated method stub
+		return this.repo.findAll();
 	}
 
 	@Override
 	public List<Discussion> getList(String title) {
-		return repo.getDiscussionsByName(title);
+		return this.repo.findAllByTitle(title);
 	}
 
 	@Override
 	public Discussion addItem(Discussion disc) {
-		// TODO Auto-generated method stub
-		return repo.save(disc);
+		return this.repo.insert(disc);
 	}
 
 	@Override
 	public Discussion deleteItem(Long id) {
-		Discussion disc = repo.findById(id).get();
-		repo.deleteById(id);
-		return disc;
+		Discussion d = this.repo.findById(id).get();
+		this.repo.deleteById(id);
+		return d;
 	}
 
 	@Override
-	public Discussion updateItem(Discussion desc) {
-		// TODO Auto-generated method stub
-		return repo.save(desc);
+	public Discussion updateItem(Long id, Discussion entity) {
+		return this.repo.save(entity);
 	}
 
 

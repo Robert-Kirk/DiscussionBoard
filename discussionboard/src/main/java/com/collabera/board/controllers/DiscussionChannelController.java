@@ -50,8 +50,9 @@ public class DiscussionChannelController {
 
 	// 3. update channel
 	@PutMapping("/updateChannel/{id}")
-	public DiscussionChannel updateChannel(@RequestBody DiscussionChannel channel) {
-		return services.updateItem(channel);
+	public DiscussionChannel updateChannel(@PathVariable(value = "id") Long id,
+			@RequestBody DiscussionChannel channel) {
+		return services.updateItem(id, channel);
 
 	}
 
