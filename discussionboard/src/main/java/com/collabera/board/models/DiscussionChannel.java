@@ -1,6 +1,5 @@
 package com.collabera.board.models;
 
-import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -14,57 +13,49 @@ public class DiscussionChannel {
 	private String id;
 
 	@Indexed
-	private String channelName;
+	private String title;
 
-	private List<Discussion> discussionsInChannel;
+	private List<Discussion> discussions;
 
-	private List<Role> channelRoles;
+//	private List<Role> channelRoles;
 
-	private Date dateCreated;
-
-	private boolean viewable;
+	private String dateCreated;
 
 	public DiscussionChannel() {
 	}
 
 	public String getChannelName() {
-		return channelName;
+		return title;
 	}
 
 	public void setChannelName(String channelName) {
-		this.channelName = channelName;
+		this.title = channelName;
 	}
 
 	public List<Discussion> getDiscussionsInChannel() {
-		return discussionsInChannel;
+		return discussions;
 	}
 
 	public void setDiscussionsInChannel(List<Discussion> discussionsInChannel) {
-		this.discussionsInChannel = discussionsInChannel;
+		this.discussions = discussionsInChannel;
 	}
 
-	public List<Role> getChannelRoles() {
-		return channelRoles;
-	}
+//	public List<Role> getChannelRoles() {
+//		return channelRoles;
+//	}
+//
+//
+//
+//	public void setChannelRoles(List<Role> channelRoles) {
+//		this.channelRoles = channelRoles;
+//	}
 
-	public void setChannelRoles(List<Role> channelRoles) {
-		this.channelRoles = channelRoles;
-	}
-
-	public Date getDateCreated() {
+	public String getDateCreated() {
 		return dateCreated;
 	}
 
-	public void setDateCreated(Date dateCreated) {
+	public void setDateCreated(String dateCreated) {
 		this.dateCreated = dateCreated;
-	}
-
-	public boolean isViewable() {
-		return viewable;
-	}
-
-	public void setViewable(boolean viewable) {
-		this.viewable = viewable;
 	}
 
 }

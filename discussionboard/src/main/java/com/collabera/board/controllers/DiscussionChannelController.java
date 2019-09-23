@@ -50,7 +50,7 @@ public class DiscussionChannelController {
 
 	// 3. update channel
 	@PutMapping("/updateChannel/{id}")
-	public DiscussionChannel updateChannel(@PathVariable(value = "id") Long id,
+	public DiscussionChannel updateChannel(@PathVariable(value = "id") String id,
 			@RequestBody DiscussionChannel channel) {
 		return services.updateItem(id, channel);
 
@@ -59,7 +59,7 @@ public class DiscussionChannelController {
 	// 4. delete channel
 	// SoftDelete
 	@PutMapping("/deleteChannel/{id}")
-	public DiscussionChannel deleteChannel(@PathVariable(value = "id") Long id) {
+	public DiscussionChannel deleteChannel(@PathVariable(value = "id") String id) {
 		return services.deleteItem(id);
 
 	}

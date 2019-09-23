@@ -1,5 +1,6 @@
 package com.collabera.board.models;
 
+@Deprecated
 public class Role {
 
 	private String roleName;

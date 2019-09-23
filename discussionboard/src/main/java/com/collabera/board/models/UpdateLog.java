@@ -3,6 +3,7 @@ package com.collabera.board.models;
 import java.util.Date;
 
 
+@Deprecated
 public class UpdateLog {
 	//Primary Key id
 	private int id;

@@ -1,45 +1,69 @@
 package com.collabera.board.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.collabera.board.models.Discussion;
-import com.collabera.board.repositories.DiscussionRepo;
-import com.collabera.board.services.interfaces.BasicCrudServices;
+import com.collabera.board.models.DiscussionChannel;
+import com.collabera.board.repositories.DiscussionChannelRepo;
 
-public class DiscussionServices implements BasicCrudServices<Discussion> {
+public class DiscussionServices {
 
 	@Autowired
-	private DiscussionRepo repo;
+	private DiscussionChannelRepo repo;
 
-	@Override
-	public List<Discussion> getList() {
+	public List<Discussion> getList(String channelId) {
 		// TODO Auto-generated method stub
-		return this.repo.findAll();
+		return this.repo.findById(channelId).get().getDiscussionsInChannel();
 	}
 
-	@Override
-	public List<Discussion> getList(String title) {
-		return this.repo.findAllByTitle(title);
+	public List<Discussion> serachForDiscussion(String title) {
+
+		List<Discussion> massList = new ArrayList<Discussion>();
+		StringBuffer buff = new StringBuffer(title);
+
+		CharSequence test = buff.subSequence(0, title.length());
+		repo.findAll().forEach(channel -> channel
+
+				.getDiscussionsInChannel().forEach(disc -> {
+
+					if (disc.getDiscussionTitle().contains(test)) {
+						massList.add(disc);
+					}
+				}));
+
+		return massList;
 	}
 
-	@Override
-	public Discussion addItem(Discussion disc) {
-		return this.repo.insert(disc);
+	public DiscussionChannel addItem(String channelId, Discussion disc) {
+		DiscussionChannel channel = this.repo.findById(channelId).get();
+		channel.getDiscussionsInChannel().add(disc);
+		return this.repo.save(channel);
 	}
 
-	@Override
-	public Discussion deleteItem(Long id) {
-		Discussion d = this.repo.findById(id).get();
-		this.repo.deleteById(id);
+	public Discussion deleteItem(String channelId, String discussionId) {
+		DiscussionChannel channel = this.repo.findById(channelId).get();
+
+		Discussion d = channel.getDiscussionsInChannel().stream()
+				.filter(discussion -> discussion.getId().equals(discussionId)).findFirst().get();
+
+		channel.getDiscussionsInChannel().remove(d);
+
 		return d;
 	}
 
-	@Override
-	public Discussion updateItem(Long id, Discussion entity) {
-		return this.repo.save(entity);
-	}
+	public Discussion updateItem(String channelId, String discussionId, Discussion entity) {
+		DiscussionChannel channel = this.repo.findById(channelId).get();
 
+		Discussion d = channel.getDiscussionsInChannel().stream()
+				.filter(discussion -> discussion.getId().equals(discussionId)).findFirst().get();
+
+		d.setDiscussionTitle(entity.getDiscussionTitle());
+		d.setArticleContent(entity.getArticleContent());
+		repo.save(channel);
+		return d;
+	}
 
 }

@@ -2,17 +2,18 @@ package com.collabera.board.models;
 
 import java.util.List;
 
+@Deprecated
 public class CommentTrees {
 
-	private List<UserComment> comments;
+	private List<Comment> comments;
 
 	public CommentTrees() {}
 
-	public List<UserComment> getComments() {
+	public List<Comment> getComments() {
 		return comments;
 	}
 
-	public void setComments(List<UserComment> comments) {
+	public void setComments(List<Comment> comments) {
 		this.comments = comments;
 	}
 

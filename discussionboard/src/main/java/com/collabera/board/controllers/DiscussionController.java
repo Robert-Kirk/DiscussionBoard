@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.collabera.board.models.Discussion;
+import com.collabera.board.models.DiscussionChannel;
 import com.collabera.board.services.DiscussionServices;
 
 @RestController
@@ -20,15 +21,15 @@ public class DiscussionController {
 	DiscussionServices services;
 
 	// 1. List some
-	@GetMapping("/")
-	public List<Discussion> listAll() {
-		return services.getList();
+	@GetMapping("{channelId}")
+	public List<Discussion> listAll(@PathVariable(value = "channelId") String channelId) {
+		return services.getList(channelId);
 	}
 
 	// 1.1. Filter list of
 	@GetMapping("/{title}")
 	public List<Discussion> listFilteredList(@PathVariable(value = "title") String title) {
-		return services.getList(title);
+		return services.serachForDiscussion(title);
 
 	}
 
@@ -41,26 +42,31 @@ public class DiscussionController {
 	}
 
 	// 2. add Discussion
-	@PostMapping("/addDiscussion")
-	public Discussion addDiscussion(@RequestBody Discussion discussion) {
+	@PostMapping("{channelId}/addDiscussion")
+	public DiscussionChannel addDiscussion(@RequestBody Discussion discussion, @PathVariable(value = "channelId") String channelId) {
 
-		return services.addItem(discussion);
+		return services.addItem(channelId, discussion);
 
 	}
 
 	// 3. update Discussion
+<<<<<<< HEAD
 	@PutMapping("/updateDiscussion/{id}")
 	public Discussion updateDiscussion(@PathVariable(value = "id") Long id,
+=======
+	@PutMapping("{channelId}/updateDiscussion/{id}")
+	public Discussion updateDiscussion(@PathVariable(value = "channelId") String channelId, @PathVariable(value = "id") String id,
+>>>>>>> 18fb1f37280b7492806700b4eb234e2b8f234d93
 			@RequestBody Discussion discussion) {
-		return services.updateItem(id, discussion);
+		return services.updateItem(channelId, id, discussion);
 
 	}
 
 	// 4. delete Discussion
 	// SoftDelete
-	@PutMapping("/deleteDiscussion/{id}")
-	public Discussion deleteDiscussion(@PathVariable(value = "id") Long id) {
-		return services.deleteItem(id);
+	@PutMapping("{channelId}/deleteDiscussion/{id}")
+	public Discussion deleteDiscussion(@PathVariable(value = "channelId") String channelId, @PathVariable(value = "id") String id) {
+		return services.deleteItem(channelId, id);
 
 	}
 

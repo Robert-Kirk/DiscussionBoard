@@ -2,7 +2,7 @@ package com.collabera.board.models;
 
 import java.util.List;
 
-
+@Deprecated
 public class UpdateTracker {
 
 	private String dateLastUpdated;
