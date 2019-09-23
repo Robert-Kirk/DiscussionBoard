@@ -43,20 +43,18 @@ public class DiscussionController {
 
 	// 2. add Discussion
 	@PostMapping("{channelId}/addDiscussion")
-	public DiscussionChannel addDiscussion(@RequestBody Discussion discussion, @PathVariable(value = "channelId") String channelId) {
+	public DiscussionChannel addDiscussion(@RequestBody Discussion discussion,
+			@PathVariable(value = "channelId") String channelId) {
 
 		return services.addItem(channelId, discussion);
 
 	}
 
 	// 3. update Discussion
-<<<<<<< HEAD
-	@PutMapping("/updateDiscussion/{id}")
-	public Discussion updateDiscussion(@PathVariable(value = "id") Long id,
-=======
 	@PutMapping("{channelId}/updateDiscussion/{id}")
-	public Discussion updateDiscussion(@PathVariable(value = "channelId") String channelId, @PathVariable(value = "id") String id,
->>>>>>> 18fb1f37280b7492806700b4eb234e2b8f234d93
+	public Discussion updateDiscussion(@PathVariable(value = "channelId") String channelId,
+			@PathVariable(value = "id") String id,
+
 			@RequestBody Discussion discussion) {
 		return services.updateItem(channelId, id, discussion);
 
@@ -65,7 +63,8 @@ public class DiscussionController {
 	// 4. delete Discussion
 	// SoftDelete
 	@PutMapping("{channelId}/deleteDiscussion/{id}")
-	public Discussion deleteDiscussion(@PathVariable(value = "channelId") String channelId, @PathVariable(value = "id") String id) {
+	public Discussion deleteDiscussion(@PathVariable(value = "channelId") String channelId,
+			@PathVariable(value = "id") String id) {
 		return services.deleteItem(channelId, id);
 
 	}
