@@ -2,6 +2,7 @@ package com.collabera.board.services.interfaces;
 
 import java.util.List;
 
+@Deprecated
 public interface BasicCrudServices<T> {
 	
 	public List<T> getList();
@@ -10,8 +11,8 @@ public interface BasicCrudServices<T> {
 
 	public T addItem(T t);
 
-	public T deleteItem(Long id);
+	public T deleteItem(String id);
 
-	public T updateItem(Long id, T t);
+	public T updateItem(String id, T t);
 
 }

@@ -12,21 +12,22 @@ public class Discussion {
 	private String id;
 	
 	@Indexed
-	private String discussionTitle;
+	private String title;
 	private String author;
 	private String articleContent;
 	
-	@SuppressWarnings("unused")
-	private List<CommentTrees> comments;
+	private String dateCreated;
+	
+	private List<Comment> comments;
 
 	public Discussion() {}
 
 	public String getDiscussionTitle() {
-		return discussionTitle;
+		return title;
 	}
 
 	public void setDiscussionTitle(String discussionTitle) {
-		this.discussionTitle = discussionTitle;
+		this.title = discussionTitle;
 	}
 
 	public String getAuthor() {
@@ -51,6 +52,22 @@ public class Discussion {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getDateCreated() {
+		return dateCreated;
+	}
+
+	public void setDateCreated(String dateCreated) {
+		this.dateCreated = dateCreated;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 	
 	

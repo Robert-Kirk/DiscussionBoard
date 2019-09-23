@@ -3,44 +3,47 @@ package com.collabera.board.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.query.TextCriteria;
 
 import com.collabera.board.models.DiscussionChannel;
 import com.collabera.board.repositories.DiscussionChannelRepo;
-import com.collabera.board.services.interfaces.BasicCrudServices;
 
-public class DiscussionChannelServices implements BasicCrudServices<DiscussionChannel>{
+public class DiscussionChannelServices{
 
 	@Autowired
 	DiscussionChannelRepo repo;
 	
-	@Override
-	public List<DiscussionChannel> getList() {
+	
+	public List<DiscussionChannel> getList() { 
 		
 		return repo.findAll();
 	}
 	
-	@Override
+	
 	public List<DiscussionChannel> getList(String title) {
-		// TODO Auto-generated method stub
-		return repo.findAllByTitle(title);
+		TextCriteria criteria = TextCriteria.forDefaultLanguage().matching(title);
+		return repo.findAllBy(criteria);
 	}
 
-	@Override
+	
 	public DiscussionChannel addItem(DiscussionChannel channel) {
+		
+		return repo.save(channel);
+	}
+
+	
+	public DiscussionChannel deleteItem(String id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
-	public DiscussionChannel deleteItem(Long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public DiscussionChannel updateItem(Long id, DiscussionChannel channel) {
-		// TODO Auto-generated method stub
-		return null;
+	
+	public DiscussionChannel updateItem(String id, DiscussionChannel channel) {
+		DiscussionChannel old = repo.findById(id).get();
+		
+		old.setChannelName(channel.getChannelName());
+		
+		return repo.save(old); 
 	}
 
 }

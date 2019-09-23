@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.collabera.board.models.Discussion;
 
 @Repository
-public interface DiscussionRepo extends MongoRepository<Discussion, Long> {
+public interface DiscussionRepo extends MongoRepository<Discussion, String> {
 
 	List<Discussion> findAllByTitle(String title);
 
