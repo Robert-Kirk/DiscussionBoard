@@ -3,15 +3,21 @@ package com.collabera.board.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.collabera.board.models.Comment;
 import com.collabera.board.models.Discussion;
-import com.collabera.board.repositories.DiscussionRepo;
+import com.collabera.board.models.DiscussionChannel;
+import com.collabera.board.repositories.DiscussionChannelRepo;
 
+@Service
 public class CommentServices {
 
 	@Autowired
-	DiscussionRepo discussionRep;
+	private DiscussionChannelRepo repo;
+
+//	@Autowired
+//	DiscussionRepo discussionRep;
 
 //	@Autowired
 //	CommentRepository repo;
@@ -28,34 +34,45 @@ public class CommentServices {
 //		return null;
 //	}
 
-	public Discussion addItem(String discussionId, Comment comment) {
-		Discussion targetDisc = this.getTargetedDiscussion(discussionId);
-		targetDisc.getComments().add(comment);
+	public Discussion addItem(String channelId, String discussionId, Comment comment) {
+		DiscussionChannel targetChannel = getTargetChannel(channelId);
 
-		return this.saveTargetDiscussion(targetDisc);
+		Discussion targetDiscussion = getTargetedDiscussion(discussionId, targetChannel);
+
+		targetDiscussion.getComments().add(comment);
+		repo.save(targetChannel);
+		return targetDiscussion;
 	}
 
-	public Discussion addItem(String discussionId, Comment comment, String replyId) {
-		Discussion targetDisc = this.getTargetedDiscussion(discussionId);
+	public Discussion addItem(String channelId, String discussionId, Comment comment, String replyId) {
+		DiscussionChannel targetChannel = getTargetChannel(channelId);
+
+		Discussion targetDiscussion = getTargetedDiscussion(discussionId, targetChannel);
+
 		comment.setReplyId(replyId);
-		targetDisc.getComments().add(comment);
-
-		return this.saveTargetDiscussion(targetDisc);
+		targetDiscussion.getComments().add(comment);
+		repo.save(targetChannel);
+		return targetDiscussion;
 	}
 
-	public Discussion deleteItem(String discussionId, String commentId) {
-		Discussion targetDisc = this.getTargetedDiscussion(discussionId);
+	public Discussion deleteItem(String channelId, String discussionId, String commentId) {
+		DiscussionChannel targetChannel = getTargetChannel(channelId);
 
-		List<Comment> commsSearch = targetDisc.getComments();
+		Discussion targetDiscussion = getTargetedDiscussion(discussionId, targetChannel);
+
+		List<Comment> commsSearch = targetDiscussion.getComments();
 
 		commsSearch.removeIf(comment -> comment.getId().equals(commentId));
-
-		return this.saveTargetDiscussion(targetDisc);
+		repo.save(targetChannel);
+		return targetDiscussion;
 	}
 
-	public Discussion updateItem(String discussionId, String commentId, Comment comment) {
-		Discussion target = this.getTargetedDiscussion(discussionId);
-		List<Comment> comments = target.getComments();
+	public Discussion updateItem(String channelId, String discussionId, String commentId, Comment comment) {
+		DiscussionChannel targetChannel = getTargetChannel(channelId);
+
+		Discussion targetDiscussion = getTargetedDiscussion(discussionId, targetChannel);
+		
+		List<Comment> comments = targetDiscussion.getComments();
 
 		int index = comments.indexOf(comments.stream()
 				.filter(commentBeingProcessed -> commentBeingProcessed.getId().equals(commentId)).findFirst().get());
@@ -64,15 +81,18 @@ public class CommentServices {
 		comment.setId(orginalId);
 		comments.add(index, comment);
 
-		return this.saveTargetDiscussion(target);
+		repo.save(targetChannel);
+		
+		return targetDiscussion;
 	}
 
-	private Discussion getTargetedDiscussion(String discussionId) {
-		return discussionRep.findById(discussionId).get();
+	private Discussion getTargetedDiscussion(String discussionId, DiscussionChannel channel) {
+		return channel.getDiscussionsInChannel().stream().filter(discussion -> discussion.getId().equals(discussionId))
+				.findFirst().get();
 	}
 
-	private Discussion saveTargetDiscussion(Discussion disc) {
-		return discussionRep.save(disc);
+	private DiscussionChannel getTargetChannel(String channelId) {
+		return repo.findById(channelId).get();
 	}
 
 }

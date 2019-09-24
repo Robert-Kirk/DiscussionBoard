@@ -13,7 +13,9 @@ public class Discussion {
 	
 	@Indexed
 	private String title;
+	@Indexed
 	private String author;
+	
 	private String articleContent;
 	
 	private String dateCreated;

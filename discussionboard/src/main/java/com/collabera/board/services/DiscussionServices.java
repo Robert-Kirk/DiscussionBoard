@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.collabera.board.models.Discussion;
 import com.collabera.board.models.DiscussionChannel;
 import com.collabera.board.repositories.DiscussionChannelRepo;
 
+@Service
 public class DiscussionServices {
 
 	@Autowired
@@ -37,10 +39,14 @@ public class DiscussionServices {
 		return massList;
 	}
 
-	public DiscussionChannel addItem(String channelId, Discussion disc) {
+	public Discussion addItem(String channelId, Discussion disc) {
 		DiscussionChannel channel = this.repo.findById(channelId).get();
 		channel.getDiscussionsInChannel().add(disc);
-		return this.repo.save(channel);
+		channel = this.repo.save(channel);
+		Discussion addedDiscussion = channel.getDiscussionsInChannel().get(
+				channel.getDiscussionsInChannel().size()-1
+				);
+		return addedDiscussion;
 	}
 
 	public Discussion deleteItem(String channelId, String discussionId) {
